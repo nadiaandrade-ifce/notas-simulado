@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notas do Simulado ENEM 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --page-bg: #EDE7D6;
+    --page-bg-2: #E4DCC6;
+    --card-bg: #FBF8F0;
+    --card-line: #D8CFB8;
+    --ink: #1C2A37;
+    --ink-soft: #5C6B74;
+    --ink-faint: #8A7F68;
+    --accent: #A6342A;
+    --accent-soft: #C9AE8F;
+    --track: #E4DCC6;
+    --page-text: #2A241A;
+    --page-text-soft: #6B6252;
+    --focus: #1C2A37;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page-bg: #131C24;
+      --page-bg-2: #0E151B;
+      --card-bg: #F7F2E4;
+      --card-line: #D8CFB8;
+      --ink: #1C2A37;
+      --ink-soft: #5C6B74;
+      --ink-faint: #8A7F68;
+      --accent: #C24B3B;
+      --accent-soft: #C9AE8F;
+      --track: #E4DCC6;
+      --page-text: #E7E1D2;
+      --page-text-soft: #9CA6AD;
+      --focus: #F7F2E4;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page-bg: #131C24;
+    --page-bg-2: #0E151B;
+    --card-bg: #F7F2E4;
+    --card-line: #D8CFB8;
+    --ink: #1C2A37;
+    --ink-soft: #5C6B74;
+    --ink-faint: #8A7F68;
+    --accent: #C24B3B;
+    --accent-soft: #C9AE8F;
+    --track: #E4DCC6;
+    --page-text: #E7E1D2;
+    --page-text-soft: #9CA6AD;
+    --focus: #F7F2E4;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+  }
+
+  body {
+    background: radial-gradient(ellipse 1200px 800px at 50% -10%, var(--page-bg-2), var(--page-bg));
+    color: var(--page-text);
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 56px 20px 80px;
+    line-height: 1.5;
+  }
+
+  .hero {
+    text-align: center;
+    max-width: 480px;
+    margin-bottom: 36px;
+  }
+
+  .hero .kicker {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    color: var(--page-text-soft);
+    margin: 0 0 10px;
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(32px, 6vw, 44px);
+    line-height: 1.12;
+    margin: 0 0 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero p {
+    font-size: 15px;
+    color: var(--page-text-soft);
+    margin: 0;
+    max-width: 380px;
+    margin-inline: auto;
+  }
+
+  .card {
+    width: 100%;
+    max-width: 460px;
+    background: var(--card-bg);
+    color: var(--ink);
+    border-radius: 3px;
+    border: 1px solid var(--card-line);
+    box-shadow: 0 24px 60px -24px rgba(0,0,0,0.45), 0 2px 0 rgba(0,0,0,0.03);
+    padding: 32px;
+    position: relative;
+  }
+
+  .card::before {
+    content: "";
+    position: absolute;
+    top: 14px; left: 14px; right: 14px; bottom: 14px;
+    border: 1px solid var(--card-line);
+    pointer-events: none;
+    border-radius: 2px;
+  }
+
+  /* SEARCH STATE */
+  #search-view label {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+
+  .search-row {
+    display: flex;
+    gap: 8px;
+  }
+
+  #name-input {
+    flex: 1;
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    padding: 12px 14px;
+    border: 1px solid var(--card-line);
+    border-radius: 2px;
+    background: #fff;
+    color: var(--ink);
+    min-width: 0;
+  }
+
+  #name-input:focus {
+    outline: 2px solid var(--focus);
+    outline-offset: 1px;
+  }
+
+  #search-btn {
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 2px;
+    background: var(--ink);
+    color: var(--card-bg);
+    cursor: pointer;
+  }
+
+  #search-btn:hover { background: var(--accent); }
+  #search-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .hint {
+    font-size: 13px;
+    color: var(--ink-faint);
+    margin: 14px 0 0;
+  }
+
+  .status {
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    display: none;
+  }
+  .status.visible { display: block; }
+
+  .matches {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .match-btn {
+    text-align: left;
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
+    padding: 11px 14px;
+    background: #fff;
+    border: 1px solid var(--card-line);
+    border-radius: 2px;
+    cursor: pointer;
+    color: var(--ink);
+  }
+  .match-btn:hover, .match-btn:focus-visible {
+    border-color: var(--accent);
+    outline: none;
+  }
+  .match-btn .turma {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 2px;
+  }
+
+  /* RESULT STATE */
+  #result-view { display: none; }
+  #result-view.visible { display: block; }
+  #search-view.hidden { display: none; }
+
+  .back-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    background: none;
+    border: none;
+    color: var(--ink-faint);
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 18px;
+  }
+  .back-btn:hover { color: var(--accent); }
+
+  .result-head { margin-bottom: 22px; }
+
+  .result-head .turma-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    border: 1px solid var(--card-line);
+    padding: 3px 8px;
+    border-radius: 2px;
+    margin-bottom: 10px;
+  }
+
+  .result-head h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 24px;
+    margin: 0;
+    line-height: 1.2;
+  }
+
+  .overall {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 18px 0;
+    border-top: 1px solid var(--card-line);
+    border-bottom: 1px solid var(--card-line);
+    margin-bottom: 22px;
+  }
+
+  .overall .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: 40px;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .overall .meta { flex: 1; }
+  .overall .meta .label {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0 0 3px;
+  }
+  .overall .meta .compare {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    color: var(--ink-faint);
+    margin: 0;
+  }
+
+  .areas { display: flex; flex-direction: column; gap: 16px; }
+
+  .area-row .area-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+  }
+
+  .area-row .area-name {
+    font-size: 14px;
+    color: var(--ink);
+  }
+
+  .area-row .area-score {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+
+  .area-row .area-score .acertos {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .bar-track {
+    height: 6px;
+    background: var(--track);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: var(--ink);
+    border-radius: 3px;
+    transition: width 0.5s ease;
+  }
+
+  .avg-mark {
+    position: absolute;
+    top: -2px;
+    width: 2px;
+    height: 10px;
+    background: var(--accent);
+  }
+
+  .legend {
+    margin-top: 18px;
+    font-size: 12px;
+    color: var(--ink-faint);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .legend .swatch {
+    width: 8px; height: 8px; background: var(--accent); display: inline-block; border-radius: 50%;
+  }
+
+  .footnote {
+    margin-top: 30px;
+    max-width: 460px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--page-text-soft);
+  }
+
+  @media (max-width: 420px) {
+    .card { padding: 24px 20px; }
+    .search-row { flex-direction: column; }
+    #search-btn { padding: 12px; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <p class="kicker">Simulado ENEM · 2026</p>
+    <h1>Confira sua nota</h1>
+    <p>Digite seu nome completo para ver o desempenho por área e a nota geral do simulado.</p>
+  </div>
+
+  <div class="card">
+    <div id="search-view">
+      <label for="name-input">Nome do aluno</label>
+      <div class="search-row">
+        <input id="name-input" type="text" placeholder="Ex: Maria Eduarda Guerra Leandro" autocomplete="off" />
+        <button id="search-btn">Buscar</button>
+      </div>
+      <p class="hint">Digite pelo menos nome e sobrenome, do jeito que está na lista de chamada.</p>
+      <div id="status" class="status"></div>
+      <div id="matches" class="matches"></div>
+    </div>
+
+    <div id="result-view">
+      <button class="back-btn" id="back-btn">← buscar outro nome</button>
+      <div class="result-head">
+        <span class="turma-badge" id="r-turma"></span>
+        <h2 id="r-nome"></h2>
+      </div>
+
+      <div class="overall">
+        <div class="num" id="r-geral">—</div>
+        <div class="meta">
+          <p class="label">Nota geral</p>
+          <p class="compare" id="r-compare"></p>
+        </div>
+      </div>
+
+      <div class="areas" id="r-areas"></div>
+
+      <div class="legend"><span class="swatch"></span> média da turma</div>
+    </div>
+  </div>
+
+  <p class="footnote">Simulado ainda em correção — algumas notas podem ser atualizadas nos próximos dias.</p>
+
+<script>
+// data columns: [turma, nome, ling_acertos, ling_nota, hum_acertos, hum_nota, nat_acertos, nat_nota, mat_acertos, mat_nota, total_questoes, nota_geral]
+const STUDENTS = [["Eventos S2", "ALEWIARA NUNES BRAÚNA", 12.0, 414.1, 8.0, 416.2, 11.0, 456.5, 16.0, 605.6, 47, 492.7], ["Eventos S2", "ANA RAQUEL SOUSA FRANCELINO", 15.0, 463.8, 12.0, 482.6, 9.0, 401.5, 12.0, 512.1, 48, 497.8], ["Eventos S2", "DANIEL DOS ANJOS VIEIRA", 12.0, 414.1, 8.0, 416.2, 8.0, 374.1, 8.0, 418.6, 36, 436.1], ["Eventos S2", "ELIZA BEATRIZ SOUZA GOMES", 0.0, 0, 0.0, 0, 10.0, 429.0, 6.0, 371.9, 16, 333.3], ["Eventos S2", "HENZO SAMUEL TAVARES SILVA", 14.0, 447.2, 7.0, 399.6, 13.0, 511.4, 10.0, 465.4, 44, 477.3], ["Eventos S2", "MARIA CLARA LIMA DE SOUZA", 7.0, 331.4, 8.0, 416.2, 0.0, 0, 0.0, 0, 15, 328.1], ["Eventos S2", "MARIA EMANUELLY LEANDRO VIEIRA", 9.0, 364.5, 14.0, 515.9, 0.0, 0, 0.0, 0, 23, 369.3], ["Eventos S2", "MARIA LUIZA ALVES DE SOUSA", 8.0, 348.0, 9.0, 432.8, 14.0, 538.9, 7.0, 395.3, 38, 446.4], ["Eventos S2", "MARIA THAYNARA SOARES MENDONÇA", 11.0, 397.6, 4.0, 349.8, 0.0, 0, 0.0, 0, 15, 328.1], ["Eventos S2", "MARIANA BERNADINO MOURA", 15.0, 463.8, 14.0, 515.9, 0.0, 0, 0.0, 0, 29, 400.1], ["Eventos S2", "MICHELE MARTINS DE MENEZES", 12.0, 414.1, 8.0, 416.2, 0.0, 0, 0.0, 0, 20, 353.8], ["Eventos S2", "NAHARA VIEIRA LIMA", 0.0, 0, 0.0, 0, 14.0, 538.9, 20.0, 699.2, 34, 425.8], ["Eventos S2", "RAÍSSA ALMEIDA RODRIGUES", 14.0, 447.2, 3.0, 333.2, 0.0, 0, 0.0, 0, 17, 338.4], ["Eventos S2", "RAÍSSA SOUSA GOMES", 0.0, 0, 0.0, 0, 10.0, 429.0, 8.0, 418.6, 18, 343.5], ["Eventos S2", "RAKEL BATISTA DE SOUSA", 14.0, 447.2, 5.0, 366.4, 12.0, 483.9, 14.0, 558.9, 45, 482.4], ["Eventos S2", "THALIA SOUZA GOMES", 0.0, 0, 0.0, 0, 10.0, 429.0, 9.0, 442.0, 19, 348.7], ["Eventos S4", "Ana Carolina Guerra da Silva", 18.0, 513.4, 12.0, 482.6, 10.0, 429.0, 4.0, 325.1, 44, 477.3], ["Eventos S4", "Antônia Lorrany Souza Maciel", 0.0, 0, 0.0, 0, 18.0, 648.8, 10.0, 465.4, 28, 395.0], ["Eventos S4", "Antonio Gustavo Batista da Silva", 23.0, 596.1, 21.0, 632.1, 14.0, 538.9, 8.0, 418.6, 66, 590.4], ["Eventos S4", "João Vitor Tavares Silva", 13.0, 430.7, 12.0, 482.6, 6.0, 319.1, 4.0, 325.1, 35, 431.0], ["Eventos S4", "José Alehandro Pereira de Sousa", 20.0, 546.5, 12.0, 482.6, 8.0, 374.1, 7.0, 395.3, 47, 492.7], ["Eventos S4", "Kailane Marciel de Lima", 27.0, 662.2, 14.0, 515.9, 11.0, 456.5, 11.0, 488.8, 63, 575.0], ["Eventos S4", "Letícia Ferreira Mesquita", 17.0, 496.8, 16.0, 549.1, 0.0, 0, 0.0, 0, 33, 420.7], ["Eventos S4", "Luís Artur Pereira Simplício", 10.0, 381.1, 11.0, 466.0, 11.0, 456.5, 11.0, 488.8, 43, 472.1], ["Eventos S4", "Maria Barroso Sampaio Cordeiro", 17.0, 496.8, 11.0, 466.0, 6.0, 319.1, 17.0, 629.0, 51, 513.3], ["Eventos S4", "Maria Ellany Uchoa Tavares", 23.0, 596.1, 17.0, 565.7, 0.0, 0, 0.0, 0, 40, 456.7], ["Eventos S4", "Maria Vitória Agostinho Silva", 11.0, 397.6, 11.0, 466.0, 11.0, 456.5, 8.0, 418.6, 41, 461.8], ["Eventos S4", "Marya Paulla Bernardo da Silva", 14.0, 447.2, 10.0, 449.4, 0.0, 0, 0.0, 0, 24, 374.4], ["Eventos S4", "Paula Cibely Moreno Melo", 11.0, 397.6, 12.0, 482.6, 0.0, 0, 0.0, 0, 23, 369.3], ["Eventos S4", "Rakelly Barbosa de Queiroz", 18.0, 513.4, 13.0, 499.3, 0.0, 0, 0.0, 0, 31, 410.4], ["Eventos S4", "Tamires Pereira Oliveira", 27.0, 662.2, 22.0, 648.7, 12.0, 483.9, 11.0, 488.8, 72, 621.3], ["Eventos S6", "ANTONIA KARLA CASTRO FERREIRA", 0.0, 0, 0.0, 0, 22.0, 758.7, 16.0, 605.6, 38, 446.4], ["Eventos S6", "ANTÔNIO MARTINS BARBOSA NETO", 22.0, 579.5, 24.0, 681.9, 5.0, 291.6, 10.0, 465.4, 61, 564.7], ["Eventos S6", "FRANCISCA MARIANE MACIEL DE OLIVEIRA", 18.0, 513.4, 6.0, 383.0, 14.0, 538.9, 17.0, 629.0, 55, 533.8], ["Eventos S6", "FRANCISCA TAYNA DE CASTRO SENA", 16.0, 480.3, 10.0, 449.4, 15.0, 566.4, 13.0, 535.5, 54, 528.7], ["Eventos S6", "FRANCISCO GUSTAVO CONSTANTINO DE", 20.0, 546.5, 20.0, 615.5, 6.0, 319.1, 11.0, 488.8, 57, 544.1], ["Eventos S6", "HENRIQUE ANTONIO GOMES LUSTOSA", 25.0, 629.2, 14.0, 515.9, 20.0, 703.7, 14.0, 558.9, 73, 626.4], ["Eventos S6", "IARA NADIELE FÉLIX PEREIRA", 20.0, 546.5, 10.0, 449.4, 14.0, 538.9, 18.0, 652.4, 62, 569.8], ["Eventos S6", "ISABEL KETHELLEN PEREIRA CORDEIRO", 28.0, 678.8, 29.0, 764.9, 16.0, 593.8, 18.0, 652.4, 91, 719.0], ["Eventos S6", "KAIKE ALVES MARCOLINO", 17.0, 496.8, 17.0, 565.7, 15.0, 566.4, 11.0, 488.8, 60, 559.6], ["Eventos S6", "LARA MARIA LOBO SILVA", 19.0, 529.9, 20.0, 615.5, 15.0, 566.4, 13.0, 535.5, 67, 595.6], ["Eventos S6", "LINDONJONSON MARINHO MENDES", 30.0, 711.9, 27.0, 731.7, 15.0, 566.4, 10.0, 465.4, 82, 672.7], ["Eventos S6", "LORENA CRISTINA SOARES TORRES", 12.0, 414.1, 7.0, 399.6, 0.0, 0, 0.0, 0, 19, 348.7], ["Eventos S6", "MARIA CLARA VALDIVINO SILVA", 20.0, 546.5, 15.0, 532.5, 15.0, 566.4, 19.0, 675.8, 69, 605.8], ["Eventos S6", "MARIA GABRIELA GOMES PIRES DE PAIVA", 23.0, 596.1, 18.0, 582.3, 14.0, 538.9, 10.0, 465.4, 65, 585.3], ["Eventos S6", "MARIA ISABEL DE OLIVEIRA SOUSA", 17.0, 496.8, 21.0, 632.1, 17.0, 621.3, 12.0, 512.1, 67, 595.6], ["Eventos S6", "MARIA MADELINE MENEZES BARBOSA", 15.0, 463.8, 5.0, 366.4, 14.0, 538.9, 10.0, 465.4, 44, 477.3], ["Eventos S6", "MICAIAS DE SOUSA SILVA", 23.0, 596.1, 16.0, 549.1, 14.0, 538.9, 12.0, 512.1, 65, 585.3], ["Eventos S6", "RAPHAELL KENAN SOUSA MACIEL", 28.0, 678.8, 17.0, 565.7, 14.0, 538.9, 12.0, 512.1, 71, 616.1], ["Eventos S6", "RENATO RODRIGUES DOS SANTOS", 20.0, 546.5, 12.0, 482.6, 12.0, 483.9, 11.0, 488.8, 55, 533.8], ["Eventos S6", "YASMIM EMYLLY CRUZ MESQUITA", 31.0, 728.4, 20.0, 615.5, 17.0, 621.3, 16.0, 605.6, 84, 683.0], ["Eletrônica S2", "ANA FRANCISCA SARAIVA VILAR", 19.0, 529.9, 8.0, 416.2, 12.0, 483.9, 12.0, 512.1, 51, 513.3], ["Eletrônica S2", "CARLOS EDUARDO SOUSA DA SILVA", 23.0, 596.1, 15.0, 532.5, 16.0, 593.8, 14.0, 558.9, 68, 600.7], ["Eletrônica S2", "DAVI BATISTA DE SOUSA", 20.0, 546.5, 17.0, 565.7, 7.0, 346.6, 12.0, 512.1, 56, 539.0], ["Eletrônica S2", "FRANCISCA CLARA SOUSA", 22.0, 579.5, 16.0, 549.1, 0.0, 0, 0.0, 0, 38, 446.4], ["Eletrônica S2", "FRANCISCA CLARICE SOUSA", 19.0, 529.9, 17.0, 565.7, 0.0, 0, 0.0, 0, 36, 436.1], ["Eletrônica S2", "HUMBERTO JULIO GUEDES BARROS", 18.0, 513.4, 4.0, 349.8, 10.0, 429.0, 14.0, 558.9, 46, 487.5], ["Eletrônica S2", "JOÃO HENRIQUE OLIVEIRA UMBELINO", 10.0, 381.1, 7.0, 399.6, 0.0, 0, 0.0, 0, 17, 338.4], ["Eletrônica S2", "LANASYA KEMILLY NASCIMENTO", 9.0, 364.5, 12.0, 482.6, 12.0, 483.9, 6.0, 371.9, 39, 451.5], ["Eletrônica S2", "LAUANY LIMA MOTA", 21.0, 563.0, 6.0, 383.0, 11.0, 456.5, 13.0, 535.5, 51, 513.3], ["Eletrônica S2", "LUIS PAULO DE SOUSA SILVA", 10.0, 381.1, 8.0, 416.2, 11.0, 456.5, 9.0, 442.0, 38, 446.4], ["Eletrônica S2", "MARIA ANA CECÍLIA MACIEL ARAÚJO", 13.0, 430.7, 10.0, 449.4, 7.0, 346.6, 14.0, 558.9, 44, 477.3], ["Eletrônica S2", "MARIA STEFANY BRAGA MATIAS", 18.0, 513.4, 9.0, 432.8, 17.0, 621.3, 13.0, 535.5, 57, 544.1], ["Eletrônica S2", "PAULO SÉRGIO ALVES NASCIMENTO", 8.0, 348.0, 8.0, 416.2, 11.0, 456.5, 6.0, 371.9, 33, 420.7], ["Eletrônica S2", "PEDRO LUCAS SILVA SOUSA", 12.0, 414.1, 9.0, 432.8, 12.0, 483.9, 10.0, 465.4, 43, 472.1], ["Eletrônica S4", "AMANDA LIMA UCHOA", 27.0, 662.2, 25.0, 698.5, 20.0, 703.7, 16.0, 605.6, 88, 703.6], ["Eletrônica S4", "ANTÔNIO EMERSON LIMA SILVA", 10.0, 381.1, 9.0, 432.8, 11.0, 456.5, 3.0, 301.8, 33, 420.7], ["Eletrônica S4", "ANTÔNIO RENAN FREITAS SAMPAIO", 23.0, 596.1, 15.0, 532.5, 14.0, 538.9, 11.0, 488.8, 63, 575.0], ["Eletrônica S4", "CARLA ROBERTA DE ALMEIDA SILVA", 10.0, 381.1, 11.0, 466.0, 9.0, 401.5, 9.0, 442.0, 39, 451.5], ["Eletrônica S4", "CARLA VITÓRIA LEONOR MATEUS", 13.0, 430.7, 17.0, 565.7, 16.0, 593.8, 10.0, 465.4, 56, 539.0], ["Eletrônica S4", "CARLOS EMANUEL FERREIRA GOMES", 10.0, 381.1, 10.0, 449.4, 13.0, 511.4, 12.0, 512.1, 45, 482.4], ["Eletrônica S4", "DANIEL SANTOS FERREIRA", 11.0, 397.6, 11.0, 466.0, 5.0, 291.6, 15.0, 582.3, 42, 467.0], ["Eletrônica S4", "EXPEDITO ALVES DE VÔLA", 16.0, 480.3, 9.0, 432.8, 9.0, 401.5, 7.0, 395.3, 41, 461.8], ["Eletrônica S4", "FRANCISCO KAUÃ SANTOS BARROS", 12.0, 414.1, 15.0, 532.5, 11.0, 456.5, 7.0, 395.3, 45, 482.4], ["Eletrônica S4", "JOSUÉ DE CASTRO MACIEL", 20.0, 546.5, 25.0, 698.5, 12.0, 483.9, 17.0, 629.0, 74, 631.6], ["Eletrônica S4", "LAURA PEREIRA DAMIÃO", 21.0, 563.0, 31.0, 798.1, 17.0, 621.3, 9.0, 442.0, 78, 652.1], ["Eletrônica S4", "LUCAS DIAS ARAÚJO PRADO", 17.0, 496.8, 4.0, 349.8, 0.0, 0, 0.0, 0, 21, 359.0], ["Eletrônica S4", "LUIZ EDUARDO ALVES CHAGAS", 6.0, 314.9, 9.0, 432.8, 11.0, 456.5, 7.0, 395.3, 33, 420.7], ["Eletrônica S4", "MARIA VANESSA AGOSTINHO SILVA", 17.0, 496.8, 10.0, 449.4, 14.0, 538.9, 9.0, 442.0, 50, 508.1], ["Eletrônica S4", "MARIA YASMIN SOUZA DA SILVA", 26.0, 645.7, 20.0, 615.5, 12.0, 483.9, 17.0, 629.0, 75, 636.7], ["Eletrônica S4", "MARIANA LOUBATO VANA", 22.0, 579.5, 19.0, 598.9, 16.0, 593.8, 12.0, 512.1, 69, 605.8], ["Eletrônica S4", "PEDRO LEVI BATISTA SOARES", 18.0, 513.4, 13.0, 499.3, 0.0, 0, 0.0, 0, 31, 410.4], ["Eletrônica S4", "PEDRO LUCAS FERREIRA GOMES", 11.0, 397.6, 12.0, 482.6, 9.0, 401.5, 6.0, 371.9, 38, 446.4], ["Eletrônica S4", "SAULO VINÍCIUS DOS SANTOS", 17.0, 496.8, 8.0, 416.2, 9.0, 401.5, 13.0, 535.5, 47, 492.7], ["Eletrônica S4", "YGOR GOMES DE SOUSA", 20.0, 546.5, 16.0, 549.1, 13.0, 511.4, 11.0, 488.8, 60, 559.6], ["Eletrônica S6", "ANA CLARA FERREIRA ALBUQUERQUE", 22.0, 579.5, 23.0, 665.3, 12.0, 483.9, 17.0, 629.0, 74, 631.6], ["Eletrônica S6", "ANA JANICE PINTO ALVES", 27.0, 662.2, 25.0, 698.5, 14.0, 538.9, 29.0, 909.5, 95, 739.6], ["Eletrônica S6", "CARLOS EDUARDO FERREIRA DA SILVA", 25.0, 629.2, 6.0, 383.0, 23.0, 786.1, 8.0, 418.6, 62, 569.8], ["Eletrônica S6", "IANDRA RAQUEL CRUZ DE ASSIS", 21.0, 563.0, 14.0, 515.9, 21.0, 731.2, 20.0, 699.2, 76, 641.8], ["Eletrônica S6", "JOSÉ RENAN CAMURÇA AQUINO", 26.0, 645.7, 15.0, 532.5, 17.0, 621.3, 13.0, 535.5, 71, 616.1], ["Eletrônica S6", "LETICIA MACIEL DOS ANJOS", 17.0, 496.8, 7.0, 399.6, 14.0, 538.9, 11.0, 488.8, 49, 503.0], ["Eletrônica S6", "NATHANAEL GOMES SILVA", 5.0, 298.4, 10.0, 449.4, 0.0, 0, 0.0, 0, 15, 328.1], ["Eletrônica S6", "NYCOLY PEREIRA DE ASSIS", 22.0, 579.5, 14.0, 515.9, 9.0, 401.5, 10.0, 465.4, 55, 533.8], ["Eletrônica S6", "VICTOR GOMES DA SILVA", 11.0, 397.6, 8.0, 416.2, 14.0, 538.9, 8.0, 418.6, 41, 461.8], ["Eletrônica S6", "WENDERSON ALMEIDA SOUZA", 29.0, 695.3, 20.0, 615.5, 16.0, 593.8, 8.0, 418.6, 73, 626.4]];
+
+const AREAS = [
+  { key: 'ling', label: 'Linguagens e Códigos', idxAcertos: 2, idxNota: 3, max: 45 },
+  { key: 'hum',  label: 'Ciências Humanas',     idxAcertos: 4, idxNota: 5, max: 45 },
+  { key: 'nat',  label: 'Ciências da Natureza', idxAcertos: 6, idxNota: 7, max: 45 },
+  { key: 'mat',  label: 'Matemática',           idxAcertos: 8, idxNota: 9, max: 45 },
+];
+
+function normalize(s) {
+  return (s || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim();
+}
+
+// Compute class-wide averages (excluding zero/absent entries) for comparison bars
+function computeAverages() {
+  const sums = { ling: [0,0], hum: [0,0], nat: [0,0], mat: [0,0], geral: [0,0] };
+  STUDENTS.forEach(s => {
+    AREAS.forEach(a => {
+      const nota = s[a.idxNota];
+      if (typeof nota === 'number' && nota > 0) {
+        sums[a.key][0] += nota;
+        sums[a.key][1] += 1;
+      }
+    });
+    const geral = s[11];
+    if (typeof geral === 'number' && geral > 0) {
+      sums.geral[0] += geral;
+      sums.geral[1] += 1;
+    }
+  });
+  const avgs = {};
+  Object.keys(sums).forEach(k => {
+    avgs[k] = sums[k][1] ? sums[k][0] / sums[k][1] : null;
+  });
+  return avgs;
+}
+const AVERAGES = computeAverages();
+
+const nameInput = document.getElementById('name-input');
+const searchBtn = document.getElementById('search-btn');
+const statusEl = document.getElementById('status');
+const matchesEl = document.getElementById('matches');
+const searchView = document.getElementById('search-view');
+const resultView = document.getElementById('result-view');
+const backBtn = document.getElementById('back-btn');
+
+function setStatus(msg) {
+  if (!msg) {
+    statusEl.classList.remove('visible');
+    statusEl.textContent = '';
+    return;
+  }
+  statusEl.textContent = msg;
+  statusEl.classList.add('visible');
+}
+
+function clearMatches() {
+  matchesEl.innerHTML = '';
+}
+
+function doSearch() {
+  const raw = nameInput.value;
+  const q = normalize(raw);
+  clearMatches();
+
+  if (q.length < 3) {
+    setStatus('Digite pelo menos 3 letras do nome.');
+    return;
+  }
+
+  const words = q.split(/\s+/).filter(Boolean);
+  const matches = STUDENTS.filter(s => {
+    const n = normalize(s[1]);
+    return words.every(w => n.includes(w));
+  });
+
+  if (matches.length === 0) {
+    setStatus('Não encontramos esse nome. Confira a grafia, do jeito que está na lista de chamada.');
+    return;
+  }
+
+  if (matches.length === 1) {
+    setStatus('');
+    showResult(matches[0]);
+    return;
+  }
+
+  if (matches.length > 8) {
+    setStatus('Muitos resultados — digite o nome completo para encontrar mais rápido.');
+    return;
+  }
+
+  setStatus(matches.length + ' alunos encontrados. Selecione o seu nome:');
+  matches
+    .sort((a, b) => a[1].localeCompare(b[1], 'pt-BR'))
+    .forEach(s => {
+      const btn = document.createElement('button');
+      btn.className = 'match-btn';
+      btn.innerHTML = s[1] + '<span class="turma">' + (s[0] || '') + '</span>';
+      btn.addEventListener('click', () => showResult(s));
+      matchesEl.appendChild(btn);
+    });
+}
+
+function fmtNota(n) {
+  if (typeof n !== 'number') return '—';
+  return n.toFixed(1).replace('.', ',');
+}
+
+function showResult(s) {
+  const [turma, nome, la, ln, ha, hn, na, nn, ma, mn, totalQ, geral] = s;
+
+  document.getElementById('r-turma').textContent = turma || 'Turma não informada';
+  document.getElementById('r-nome').textContent = nome;
+  document.getElementById('r-geral').textContent = typeof geral === 'number' && geral > 0 ? fmtNota(geral) : '—';
+
+  const compareEl = document.getElementById('r-compare');
+  if (typeof geral === 'number' && geral > 0 && AVERAGES.geral) {
+    const diff = geral - AVERAGES.geral;
+    const sign = diff >= 0 ? '+' : '';
+    compareEl.textContent = sign + fmtNota(diff) + ' em relação à média geral (' + fmtNota(AVERAGES.geral) + ')';
+  } else {
+    compareEl.textContent = 'Nota ainda não lançada para este simulado.';
+  }
+
+  const areasEl = document.getElementById('r-areas');
+  areasEl.innerHTML = '';
+  AREAS.forEach(a => {
+    const acertos = s[a.idxAcertos];
+    const nota = s[a.idxNota];
+    const hasData = typeof nota === 'number' && (acertos > 0 || nota > 0);
+
+    const row = document.createElement('div');
+    row.className = 'area-row';
+
+    const top = document.createElement('div');
+    top.className = 'area-top';
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'area-name';
+    nameSpan.textContent = a.label;
+    const scoreSpan = document.createElement('span');
+    scoreSpan.className = 'area-score';
+    if (hasData) {
+      scoreSpan.innerHTML = '<span class="acertos">' + Math.round(acertos) + '/' + a.max + '</span> · ' + fmtNota(nota);
+    } else {
+      scoreSpan.textContent = 'não lançado';
+    }
+    top.appendChild(nameSpan);
+    top.appendChild(scoreSpan);
+
+    const track = document.createElement('div');
+    track.className = 'bar-track';
+    const fill = document.createElement('div');
+    fill.className = 'bar-fill';
+    const pct = hasData ? Math.min(100, (nota / 1000) * 100) : 0;
+    fill.style.width = pct + '%';
+    track.appendChild(fill);
+
+    const avg = AVERAGES[a.key];
+    if (avg) {
+      const mark = document.createElement('div');
+      mark.className = 'avg-mark';
+      mark.style.left = Math.min(100, (avg / 1000) * 100) + '%';
+      track.appendChild(mark);
+    }
+
+    row.appendChild(top);
+    row.appendChild(track);
+    areasEl.appendChild(row);
+  });
+
+  searchView.classList.add('hidden');
+  resultView.classList.add('visible');
+}
+
+function backToSearch() {
+  resultView.classList.remove('visible');
+  searchView.classList.remove('hidden');
+  setStatus('');
+  clearMatches();
+  nameInput.value = '';
+  nameInput.focus();
+}
+
+searchBtn.addEventListener('click', doSearch);
+nameInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') doSearch();
+});
+backBtn.addEventListener('click', backToSearch);
+</script>
+</body>
+</html>
