@@ -192,7 +192,7 @@
 
   <div class="hero">
     <p class="kicker" id="hero-kicker">Simulado ENEM</p>
-    <h1 id="hero-title">Confira as notas</h1>
+    <h1 id="hero-title">Confira sua nota</h1>
     <p id="hero-sub">Digite seu nome completo para ver o desempenho por área e a nota geral do simulado.</p>
   </div>
 
@@ -333,7 +333,11 @@ refreshDerivedData();
 
 /* ============ MODE SWITCH ============ */
 const HERO_TEXT = {
-  aluno: {
+  aluno: TEACHER_MODE ? {
+    kicker: 'Simulado ENEM · painel do professor',
+    title: 'Confira aqui as notas',
+    sub: 'Digite o nome completo do aluno para ver o desempenho por área e a nota geral do simulado.'
+  } : {
     kicker: 'Simulado ENEM',
     title: 'Confira sua nota',
     sub: 'Digite seu nome completo para ver o desempenho por área e a nota geral do simulado.'
