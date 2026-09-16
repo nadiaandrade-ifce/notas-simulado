@@ -544,6 +544,7 @@ if (TEACHER_MODE) {
   setMode('turmas');
 } else {
   document.querySelector('.mode-switch').style.display = 'none';
+  document.getElementById('r-compare').style.display = 'none'; // alunos não veem comparação com a média
   setMode('aluno');
 }
 </script>
